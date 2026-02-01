@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wizytówka & System Rezerwacji 2026</title>
+    <script src="cdn.jsdelivr.net"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <button class="tab-btn active" onclick="showTab('calendar')">📅 Rezerwacja</button>
+        <button class="tab-btn" onclick="showTab('about')">👤 O mnie</button>
+        <button class="tab-btn" onclick="showTab('faq')">❓ FAQ</button>
+        <button class="admin-link-discreet" onclick="loginAdmin()">Panel Systemowy</button>
+    </div>
+</nav>
+
+<div class="container">
+    <!-- REZERWACJA -->
+    <section id="calendar" class="tab-content active">
+        <h1 class="main-title">Zarezerwuj termin</h1>
+        <div class="booking-grid">
+            <div class="form-box">
+                <form id="bookingForm">
+                    <label>Data (2026):</label>
+                    <input type="date" id="dateInput" min="2026-01-01" max="2026-12-31" required>
+                    <div class="time-row">
+                        <div><label>Od:</label><input type="time" id="timeFrom" required></div>
+                        <div><label>Do:</label><input type="time" id="timeTo" required></div>
+                    </div>
+                    <input type="text" id="subject" placeholder="Temat spotkania" required>
+                    <textarea id="info" placeholder="Dodatkowe informacje dla nas..."></textarea>
+                    <input type="text" id="contact" placeholder="Twój telefon lub e-mail" required>
+                    <div class="color-row">
+                        <label>Kolor:</label>
+                        <input type="color" id="color" value="#2563eb">
+                    </div>
+                    <button type="submit" class="save-btn">Zapisz termin</button>
+                </form>
+            </div>
+            <div class="calendar-box">
+                <h3 id="monthLabel">Styczeń 2026</h3>
+                <div id="calendarDisplay" class="calendar-grid"></div>
+                <div class="legend">Najedź kursorem na kropkę, aby zobaczyć szczegóły rezerwacji.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ADMIN PANEL -->
+    <section id="admin-panel" class="tab-content">
+        <div class="admin-header">
+            <h1>Zarządzanie Systemem</h1>
+            <button onclick="exportToExcel()" class="excel-btn">📥 Pobierz arkusz XLSX</button>
+        </div>
+        <div class="table-container">
+            <table id="adminTable">
+                <thead>
+                    <tr>
+                        <th style="width: 100px;">Data</th>
+                        <th style="width: 100px;">Godziny</th>
+                        <th style="width: 150px;">Temat</th>
+                        <th>Dodatkowe Info</th>
+                        <th style="width: 150px;">Kontakt</th>
+                        <th style="width: 80px;">Akcja</th>
+                    </tr>
+                </thead>
+                <tbody id="adminBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- O MNIE -->
+    <section id="about" class="tab-content">
+        <h1>O mnie</h1>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Cześć! Nazywam się [Twoje Imię i Nazwisko]</h3>
+                <p>Jestem specjalistą w dziedzinie <strong>[Twoja Branża]</strong> z ponad [X]-letnim doświadczeniem. Moja praca to nie tylko zawód, ale przede wszystkim pasja.</p>
+                <p><strong>Czym się zajmuję?</strong></p>
+                <ul>
+                    <li>Doradztwo strategiczne w obszarze X</li>
+                    <li>Optymalizacja procesów Y</li>
+                    <li>Wsparcie techniczne i merytoryczne dla Z</li>
+                </ul>
+                <p>Zapraszam do rezerwacji terminów przez kalendarz – to najszybsza forma kontaktu!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="tab-content">
+        <h1>Często zadawane pytania</h1>
+        <div class="faq-container">
+            <details open>
+                <summary>Jak przebiega pierwsze spotkanie?</summary>
+                <p>Podczas pierwszej wizyty analizujemy Twoje potrzeby i ustalamy plan działania. Trwa to zazwyczaj ok. 45 minut.</p>
+            </details>
+            <details>
+                <summary>Czy można zmienić termin rezerwacji?</summary>
+                <p>Tak, prosimy o informację telefoniczną lub mailową co najmniej 24 godziny przed planowanym spotkaniem.</p>
+            </details>
+            <details>
+                <summary>Jakie są formy płatności?</summary>
+                <p>Akceptujemy płatności kartą, przelewem oraz przez system BLIK.</p>
+            </details>
+        </div>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
